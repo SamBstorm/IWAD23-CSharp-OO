@@ -43,7 +43,10 @@ namespace Exo_Banque.Models
 
         public override void Retrait(double montant)
         {
+            bool passeEnNegatif = Solde >= 0;
             Retrait(montant, LigneDeCredit);
+            passeEnNegatif = passeEnNegatif && Solde < 0;
+            if (passeEnNegatif) PassageEnNegatifRaise(this);
         }
 
         protected override double CalculInteret()

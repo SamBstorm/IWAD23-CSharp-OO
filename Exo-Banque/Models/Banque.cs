@@ -37,12 +37,14 @@ namespace Exo_Banque.Models
             //_comptes ??= new Dictionary<string, Courant>();
             if (_comptes.ContainsKey(compte.Numero)) return;
             _comptes.Add(compte.Numero, compte);
+            compte.PassageEnNegatifEvent += PassageEnNegatifAction;
         }
 
         public void Supprimer(string numero)
         {
             if (numero is null) return;
             if (!_comptes.ContainsKey(numero)) return;
+            _comptes[numero].PassageEnNegatifEvent -= PassageEnNegatifAction;
             _comptes.Remove(numero);
         }
 
@@ -64,6 +66,11 @@ namespace Exo_Banque.Models
                 avoir += compte;
             }
             return avoir;
+        }
+
+        private void PassageEnNegatifAction(Compte c)
+        {
+            Console.WriteLine($"Le compte {c.Numero} est passé en négatif...");
         }
     }
 }

@@ -8,6 +8,7 @@ using Exo_Banque.Interfaces;
 
 namespace Exo_Banque.Models
 {
+    internal delegate void PassageEnNegatifDelegate(Compte c);
     internal abstract class Compte : IBanker //,ICustomer //Pas exclus de mettre les deux interfaces
     {
 
@@ -15,6 +16,7 @@ namespace Exo_Banque.Models
         public double Solde { get; private set; }
         public Personne Titulaire { get; private set; }
 
+        public event PassageEnNegatifDelegate PassageEnNegatifEvent;
         public Compte(string numero, Personne titulaire)
         {
             Numero = numero;
@@ -49,6 +51,11 @@ namespace Exo_Banque.Models
         public void AppliquerInteret()
         {
             Solde += CalculInteret();
+        }
+
+        protected void PassageEnNegatifRaise(Compte c)
+        {
+            PassageEnNegatifEvent?.Invoke(c);
         }
 
         public static double operator +(Compte left, Compte right)

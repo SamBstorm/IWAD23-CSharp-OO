@@ -14,19 +14,19 @@ namespace Exo_Banque
                 Personne p1 = new Personne("Legrain", "Samuel", new DateTime(1987, 9, 27));
 
                 Courant compte1 = new Courant("BE55 1234 1234 1234", 100, p1);
-
-                compte1.Retrait(50);
-                Console.WriteLine($"Sur le compte {compte1.Numero}, le solde est de : {compte1.Solde} €");
-
                 Courant compte2 = new Courant("BE54 1234 1234 1234", 200, p1);
-
-                compte2.Depot(50_000);
-                Console.WriteLine($"Sur le compte {compte2.Numero}, le solde est de : {compte2.Solde} €");
 
                 Banque banque1 = new Banque();
                 banque1.Nom = "LeBonIntérêt!";
                 banque1.Ajouter(compte1);
                 banque1.Ajouter(compte2);
+
+                compte1.Retrait(50);
+                Console.WriteLine($"Sur le compte {compte1.Numero}, le solde est de : {compte1.Solde} €");
+
+
+                compte2.Depot(50_000);
+                Console.WriteLine($"Sur le compte {compte2.Numero}, le solde est de : {compte2.Solde} €");
 
                 //Personne user = new Personne() { Nom = "Legrain", Prenom = "Samuel", DateNaiss = new DateTime(1987,9,27)};
 
@@ -50,6 +50,11 @@ namespace Exo_Banque
                 Console.WriteLine($"Sur le compte {compte2.Numero}, le solde est de : {compte2.Solde} €");
                 compte3.AppliquerInteret();
                 Console.WriteLine($"Sur le compte {compte3.Numero}, le solde est de : {compte3.Solde} €");
+
+
+                compte1.Depot(100);
+                banque1.Supprimer(compte1.Numero);
+                compte1.Retrait(100);
             }
             catch (ArgumentOutOfRangeException ex)
             {
