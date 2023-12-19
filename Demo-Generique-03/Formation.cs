@@ -6,11 +6,25 @@ using System.Threading.Tasks;
 
 namespace Demo_Generique_03
 {
-    internal class Formation<T> where T : Personne, IPersonneFinale
+    internal class Formation
+    {
+        public string Name { get; private set; }
+
+        public Formation(string name)
+        {
+            Name = name;
+        }
+
+        public override string ToString()
+        {
+            return $"Formation : {Name}";
+        }
+    }
+    internal class Formation<T> : Formation where T : Personne, IPersonneFinale
     {
         private List<T> _list;
 
-        public Formation()
+        public Formation(string name) : base(name)
         {
             _list = new List<T>();
         }
@@ -19,15 +33,22 @@ namespace Demo_Generique_03
             _list.Add(participant);
         }
 
-        public void ListEtudiant()
+        public string ListEtudiant()
         {
+            string result = "";
             foreach (T personne in _list)
             {
                 if (personne is MembreEntreprise m)
-                    Console.WriteLine($"{m.Nom} {m.Prenom} {m.NomEntreprise}");
+                    result += $"{m.Nom} {m.Prenom} {m.NomEntreprise}\n";
                 else
-                    Console.WriteLine($"{personne.Nom} {personne.Prenom}");
+                    result += $"{personne.Nom} {personne.Prenom}\n";
             }
+            return result;
+        }
+
+        public override string ToString()
+        {
+            return $"{base.ToString()}\n{ListEtudiant()}";
         }
     }
 }

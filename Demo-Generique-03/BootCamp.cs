@@ -8,5 +8,8 @@ namespace Demo_Generique_03
 {
     internal class BootCamp<T> : Formation<T> where T : Personne, IPersonneFinale
     {
+        public BootCamp(string name) : base(name)
+        {
+        }
     }
 }
