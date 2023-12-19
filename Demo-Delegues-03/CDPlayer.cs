@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 namespace Demo_Delegues_03
 {
 
-    delegate void DelegateProgram();
+    //delegate void DelegateProgram();
     internal class CDPlayer
     {
         private CompactDisk _cd;
 
-        private DelegateProgram _program;
+        private Action _program;
 
         public CDPlayer()
         {

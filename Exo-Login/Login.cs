@@ -6,13 +6,14 @@ using System.Threading.Tasks;
 
 namespace Exo_Login
 {
-    internal delegate void LoginEventHandler(string message, bool isSucceed);
+    //internal delegate void LoginEventHandler(string message, bool isSucceed);
     internal class Login
     {
         private string _email;
         private string _password;
 
-        public event LoginEventHandler LoginEvent = null;
+        //public event LoginEventHandler LoginEvent = null;
+        public event Action<string, bool> LoginEvent = null;
 
         public Login(string email, string password)
         {

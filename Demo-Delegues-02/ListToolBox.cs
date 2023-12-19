@@ -6,10 +6,11 @@ using System.Threading.Tasks;
 
 namespace Demo_Delegues_02
 {
-    delegate bool CheckFunction(double valeurAVerifier);
+    //delegate bool CheckFunction(double valeurAVerifier);
     internal static class ListToolBox
     {
-        public static List<double> Filtre(List<double> liste, CheckFunction predicate)
+        //public static List<double> Filtre(List<double> liste, CheckFunction predicate)
+        public static List<double> Filtre(List<double> liste, Func<double,bool> predicate)
         {
             if(predicate is null) throw new ArgumentNullException(nameof(predicate));
             List<double> result = new List<double>();

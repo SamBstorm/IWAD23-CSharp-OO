@@ -1,11 +1,12 @@
 ﻿namespace Demo_Delegues_01
 {
-    delegate double MathFunction(double x, double y);
+    //delegate double MathFunction(double x, double y);
     internal class Program
     {
         static void Main(string[] args)
         {
-            MathFunction functions = MathTools.Addition;
+            //MathFunction functions = MathTools.Addition;
+            Func<double, double, double> functions = MathTools.Addition;
             functions += MathTools.Multiplication;
 
             /*if (functions != null)

@@ -8,6 +8,7 @@ namespace Demo_Evenements.Models
 {
 
     //internal delegate void AnimalActionEventHandler(object sender, EventArgs args);
+    //Le délégué AnimalActionEventHandler peut être remplacé par un EventHandler, mais aussi par le délégué générique Action<object,EventArgs>
     internal abstract class Animal
     {
         //public event AnimalActionEventHandler AvoirFaim = null;
